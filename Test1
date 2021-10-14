@@ -1,7 +1,8 @@
 class A:
     empCount = 0
-
-    def displayCount(self):
+    
+    @staticmethod
+    def displayCount():
         print ('Total obj -', A.empCount)
 
     def __init__(self, name, salary):
@@ -14,9 +15,12 @@ class A:
 
 class B(A):
 
-    def __init__(self, name, salary, bonus):
+    def __init__(self, name, salary, bonus = None):
         super().__init__(name, salary)
-        self.bonus = bonus
+        if bonus is not None:
+            self.bonus = bonus
+        else:
+            self.bonus = 0
      
     def displayEmployee(self):
         print ('My namy is ', self.name,  ', Salary: %d' % self.salary, ', Bonus: %d' % self.bonus, sep = '')
@@ -30,7 +34,7 @@ list = []
 
 list.append(A('Zara', 2000))
 list.append(B('Tom', 5000, 1000))
-list.append(A('Ted', 4000))
+list.append(B('Ted', 4000))
 list.append(C('Zed', 3000, 500))
 
 #obj1 = A('Zara', 2000)
@@ -40,6 +44,4 @@ list.append(C('Zed', 3000, 500))
 for i in range(len(list)):
     list[i].displayEmployee()
     
-list[0].displayCount()
-print(list[3].bonus)
-
+C.displayCount()
